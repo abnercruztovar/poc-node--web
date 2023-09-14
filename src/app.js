@@ -7,14 +7,15 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.set("port", 4000);
+
+// App constants
+app.set("port", process.env.PORT || 3000);
 
 //Middleware
 app.use(morgan("dev"));
 
-app.use("/", (req, res) => {
-  res.status(200);
-  res.json("hola mundo");
-});
+app.get('/', function (req, res) {
+  return res.send("Hello World!");
+})
 
 export default app;
