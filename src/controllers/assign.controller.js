@@ -1,6 +1,6 @@
-import { dbConn } from "../util/db.js";
+const dbConn =require('../util/db');
 
-const assignByActivity = (req, res) => {
+const getDashboard = (req, res) => {
   dbConn(async (db) => {
     let data = [];
 
@@ -19,7 +19,7 @@ const assignByActivity = (req, res) => {
     return res.status(500).json({ message: "No data found" });
   }, res);
 };
-export const methods = {
-  assignByActivities: assignByActivity,  
+exports.methods = {
+  assignByActivities: getDashboard,  
 };
 

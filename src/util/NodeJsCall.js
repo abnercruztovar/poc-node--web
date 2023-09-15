@@ -1,5 +1,5 @@
-import config from "../config.js";
-import { default as http } from "http";
+const config = require("../config");
+const http = require("http");
 
 const _EXTERNAL_URL = config.ASSIGMENT_SERVICE_URL;
 
@@ -24,4 +24,4 @@ const callExternalApiUsingHttp = (callback) => {
     });
 };
 
-export default callExternalApiUsingHttp;
+module.exports = callExternalApiUsingHttp;

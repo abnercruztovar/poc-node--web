@@ -1,8 +1,15 @@
-import { Router } from "express";
-import { methods as assignController } from "../controllers/assign.controller.js";
+const express = require("express");
+const router = express.Router();
+const { methods } = require("../controllers/assign.controller");
+const path = require("path");
+const rootDir = require("../util/path");
 
-const router = Router();
+router.get("/", (req, res, next) => {
+  res.sendFile(path.join(rootDir, "views", "send-assignments.html"));
+});
 
-router.get("/", assignController.assignByActivities);
+router.post("/send-assigment", (req, res, next) => {
+  res.redirect("/");
+});
 
-export default router;
+module.exports = router;

@@ -1,12 +1,12 @@
-import config from "../config.js";
+const config = require("../config");
+const mongodb = require("mongodb");
 
-import { default as mongodb } from "mongodb";
 let MongoClient = mongodb.MongoClient;
 
 const uri = `${config.mongoURI}`;
 const DATABASE_NAME = `${config.DATABASE_NAME}`;
 
-export const dbConn = async (operations, response) => {
+const dbConn = async (operations, response) => {
   try {
     const client = await MongoClient.connect(uri, {
       useNewUrlParser: true,
@@ -23,3 +23,5 @@ export const dbConn = async (operations, response) => {
     console.error({ message: "Error conecting to database ", err });
   }
 };
+
+module.exports = dbConn;

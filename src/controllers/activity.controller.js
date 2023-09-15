@@ -1,4 +1,4 @@
-import {dbConn} from "../util/db.js";
+const dbConn =require('../util/db');
 
 const getActivities = (req, res) => {
   dbConn(async (db) => {
@@ -6,7 +6,7 @@ const getActivities = (req, res) => {
     if (activities) {
       return res.json(activities);
     }
-    return res.status(500).json({ message: "No products found" });
+    return res.status(500).json({ message: "No users found" });
   }, res);
 };
 
@@ -96,10 +96,11 @@ const updateActivity = (req, res) => {
   }, res);
 };
 
-export const methods = {
-  getActivities: getActivities,
+exports.methods = {
+  getActivities,
   addActivity,
   getActivity,
   deleteActivity,
   updateActivity,
+
 };

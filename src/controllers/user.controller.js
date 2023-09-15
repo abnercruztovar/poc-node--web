@@ -1,4 +1,4 @@
-import { dbConn } from "./../util/db.js";
+const dbConn = require("./../util/db");
 
 const getUsers = (req, res) => {
   dbConn(async (db) => {
@@ -36,13 +36,33 @@ const addUser = (req, res) => {
   }, res);
 };
 
-const getUser = (req, res) => {};
+const getUser = (req, res) => {
+  const id = Number(req.params.id);
+
+  dbConn(async (db) => {
+    const user = await db.collection("User").find({ _id: id }).toArray();
+    if (user) {
+      return res.json(user);
+    }
+    return res.status(500).json({ message: "No user found" });
+  }, res);
+};
 
 const updateUser = (req, res) => {};
 
-const deleteUser = (req, res) => {};
+const deleteUser = (req, res) => {
+  const id = Number(req.params.id);
 
-export const methods = {
+  dbConn(async (db) => {
+    const user = await db.collection("User").deleteOne({ _id: id });
+    if (user) {
+      return res.json(user);
+    }
+    return res.status(500).json({ message: "No user found" });
+  }, res);
+};
+
+exports.methods = {
   getUsers,
   addUser,
   getUser,
