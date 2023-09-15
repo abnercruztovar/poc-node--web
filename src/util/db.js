@@ -4,6 +4,7 @@ import { default as mongodb } from "mongodb";
 let MongoClient = mongodb.MongoClient;
 
 const uri = `${config.mongoURI}`;
+const DATABASE_NAME = `${config.DATABASE_NAME}`;
 
 export const dbConn = async (operations, response) => {
   try {
@@ -11,10 +12,13 @@ export const dbConn = async (operations, response) => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    const db = client.db("azuredemo");
-    console.log("connected successfully to mongo server");
-    await operations(db);
-    client.close();
+
+    if (DATABASE_NAME) {
+      const db = client.db(DATABASE_NAME);
+      console.log("connected successfully to mongo server");
+      await operations(db);
+      client.close();
+    }
   } catch (err) {
     console.error({ message: "Error conecting to database ", err });
   }

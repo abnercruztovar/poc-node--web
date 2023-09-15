@@ -1,9 +1,10 @@
 import express from "express";
 import morgan from "morgan";
+import { default as callApi } from "./util/NodeJsCall.js";
 
 // Routes
-import productRoutes from "./routes/product.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import activityRoutes from "./routes/activity.routes.js";
 
 const app = express();
 
@@ -18,8 +19,15 @@ app.set("port", process.env.PORT || 3000);
 app.use(morgan("dev"));
 
 //Routes
-app.use("/api/products", productRoutes);
+app.use("/api/activities", activityRoutes);
 app.use("/api/users", userRoutes);
+
+app.get("/api/assign/:type", (req, res) => {
+  callApi(function (response) {
+    res.write(response);
+    res.end();
+  });
+});
 
 app.get("/", function (req, res) {
   return res.send("Hello World!");
