@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Send Assigments</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <main>
-        <form action="/send-assigment" method="post">
-            <input type="text" name="title">
-            <button type="submit">Send Assigments</button>
-        </form>
+      <form action="assigments/sendassignments" method="post">
+        Please select the [type] to assigment
+        <br /><br />
+        <label for="carstypes">Choose a type:</label>
+        <select name="filtertype" id="filtertype">
+          <option value="users">Users</option>
+          <option value="activities">Activities</option>
+        </select>
+        <br /><br />
+        <button type="submit" value="Send">Send Assigments</button>
+      </form>
     </main>
-</body>
+  </body>
 </html>

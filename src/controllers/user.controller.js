@@ -62,7 +62,7 @@ const deleteUser = (req, res) => {
   }, res);
 };
 
-exports.methods = {
+exports.methodsusers = {
   getUsers,
   addUser,
   getUser,

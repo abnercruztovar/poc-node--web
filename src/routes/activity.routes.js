@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { methods } = require("../controllers/activity.controller.js");
+const { methodsactivities: methods } = require("../controllers/activity.controller.js");
 
 router.get("/", methods.getActivities);
 router.get("/:id", methods.getActivity);

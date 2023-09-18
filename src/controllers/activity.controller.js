@@ -96,7 +96,7 @@ const updateActivity = (req, res) => {
   }, res);
 };
 
-exports.methods = {
+exports.methodsactivities = {
   getActivities,
   addActivity,
   getActivity,
